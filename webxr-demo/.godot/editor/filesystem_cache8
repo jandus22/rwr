@@ -1,0 +1,17 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1761216892
+export_presets.cfg::TextFile::-1::1761214079::0::1::::<><>::
+icon.svg::CompressedTexture2D::1948672498243870223::1761214079::1761215366::1::::<><>::
+node_3d.gd::GDScript::-1::1761214079::0::1::::<>Node3D<>::
+node_3d.tscn::PackedScene::8124187686406124495::1761214079::0::1::::<><>::res://node_3d.gd
+rigged_hand_2.png::CompressedTexture2D::2297908514426617206::1761216891::1761216891::1::::<><>::
+rigged_hand_1.png::CompressedTexture2D::7550152872564035306::1761216890::1761216892::1::::<><>::
+rigged_hand_0.jpg::CompressedTexture2D::7000023664125268109::1761216889::1761216892::1::::<><>::
+rigged_hand.glb::PackedScene::5430856409122905149::1761216889::1761216892::1::::<><>::uid://c6y4mqj26new0::::res://rigged_hand_0.jpg<>uid://dftl6dofitvoc::::res://rigged_hand_1.png
+::res://assets/::1761216078
+::res://assets/materials/::1761216078
+::res://assets/models/::1761216470
+rigged_hand_2.png::CompressedTexture2D::8385501707499839238::1761216469::1761216469::1::::<><>::
+rigged_hand_1.png::CompressedTexture2D::5228174927578507370::1761216468::1761216470::1::::<><>::
+rigged_hand_0.jpg::CompressedTexture2D::5534668522410200071::1761216467::1761216470::1::::<><>::
+rigged_hand.glb::PackedScene::5830056623827732052::1761216431::1761216470::1::::<><>::uid://ck4bggk6rj1db::::res://assets/models/rigged_hand_0.jpg<>uid://cgqtjoprpa22y::::res://assets/models/rigged_hand_1.png

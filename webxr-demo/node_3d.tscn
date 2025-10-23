@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn0ogi8h1povv"]
+[gd_scene load_steps=5 format=3 uid="uid://dn0ogi8h1povv"]
 
 [ext_resource type="Script" path="res://node_3d.gd" id="1_nwfjp"]
+[ext_resource type="PackedScene" uid="uid://cjm0n82sfy3b2" path="res://rigged_hand.glb" id="2_usyfk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_x0gg7"]
 size = Vector3(0.1, 0.1, 0.1)
@@ -18,13 +19,26 @@ script = ExtResource("1_nwfjp")
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
+[node name="Sketchfab_Scene" parent="XROrigin3D/LeftController" instance=ExtResource("2_usyfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11818, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController/Sketchfab_Scene"]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
+visible = false
 mesh = SubResource("BoxMesh_x0gg7")
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"right_hand"
 
+[node name="Sketchfab_Scene" parent="XROrigin3D/RightController" instance=ExtResource("2_usyfk")]
+transform = Transform3D(-0.989265, 0, -0.146135, 0, 1, 0, 0.146135, 0, -0.989265, -0.677585, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController/Sketchfab_Scene"]
+transform = Transform3D(-0.130034, 0.0701121, 0.989028, -0.99147, -0.00027062, -0.130336, -0.00887047, -0.997539, 0.0695492, 0, 0, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
+visible = false
 mesh = SubResource("BoxMesh_8y5sw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
