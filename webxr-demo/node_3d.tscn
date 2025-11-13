@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://lwjpy1mxgdla"]
+[gd_scene load_steps=12 format=3 uid="uid://lwjpy1mxgdla"]
 
-[ext_resource type="Script" path="res://node_3d.gd" id="1_61lph"]
+[ext_resource type="Script" uid="uid://dc1lu38185dod" path="res://node_3d.gd" id="1_61lph"]
 [ext_resource type="PackedScene" uid="uid://b8sqplh0apc1y" path="res://assets/models/rigged_hand.glb" id="2_noarx"]
+[ext_resource type="Script" uid="uid://82l1c27xikiy" path="res://character_body_3d.gd" id="3_a0tk4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_noarx"]
 
@@ -32,13 +33,11 @@ script = ExtResource("1_61lph")
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_noarx")
 
@@ -49,12 +48,14 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 tracker = &"right_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_a0tk4")
 
 [node name="Sketchfab_Scene" parent="XROrigin3D/RightController" instance=ExtResource("2_noarx")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000532866, 0, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="XROrigin3D"]
+script = ExtResource("3_a0tk4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
