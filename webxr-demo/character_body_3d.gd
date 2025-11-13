@@ -1,28 +1,19 @@
 extends CharacterBody3D
 
+@onready var left_controller = $XROrigin3D/XRController3D_Left
+@onready var right_controller = $XROrigin3D/XRController3D_Right
+@onready var head = $XROrigin3D/XRCamera3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+var speed := 3.0
 
+func _physics_process(delta):
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	input_vector.y = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
+	input_vector = input_vector.normalized()
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	var direction = (head.global_transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
+	velocity.x = direction.x * speed
+	velocity.z = direction.z * speed
 
 	move_and_slide()
