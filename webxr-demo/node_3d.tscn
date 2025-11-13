@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://lwjpy1mxgdla"]
 
-[ext_resource type="Script" uid="uid://dc1lu38185dod" path="res://node_3d.gd" id="1_61lph"]
+[ext_resource type="Script" path="res://node_3d.gd" id="1_61lph"]
 [ext_resource type="PackedScene" uid="uid://b8sqplh0apc1y" path="res://assets/models/rigged_hand.glb" id="2_noarx"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_noarx"]
@@ -32,13 +32,13 @@ script = ExtResource("1_61lph")
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_noarx")
 
@@ -49,12 +49,12 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 tracker = &"right_hand"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_a0tk4")
 
 [node name="Sketchfab_Scene" parent="XROrigin3D/RightController" instance=ExtResource("2_noarx")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0005328655, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000532866, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -94,5 +94,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_a0tk4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
-transform = Transform3D(0.66253453, -0.4719046, 0.58168215, 0.35462287, 0.8816496, 0.31134644, -0.65976566, 4.506401e-08, 0.75147146, 3.593394, 8.149786, 8.149802)
-light_color = Color(0.87998766, 0.67567897, 0.8727075, 1)
+transform = Transform3D(0.662535, -0.471905, 0.581682, 0.354623, 0.88165, 0.311346, -0.659766, 4.5064e-08, 0.751471, 3.59339, 8.14979, 8.1498)
+light_color = Color(0.859099, 0.757699, 3.85046e-07, 1)
