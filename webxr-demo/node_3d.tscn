@@ -1,12 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://lwjpy1mxgdla"]
+[gd_scene load_steps=16 format=3 uid="uid://lwjpy1mxgdla"]
 
 [ext_resource type="Script" uid="uid://dc1lu38185dod" path="res://node_3d.gd" id="1_61lph"]
 [ext_resource type="PackedScene" uid="uid://b8sqplh0apc1y" path="res://assets/models/rigged_hand.glb" id="2_noarx"]
-[ext_resource type="Script" uid="uid://82l1c27xikiy" path="res://character_body_3d.gd" id="3_a0tk4"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_noarx"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+[ext_resource type="Script" uid="uid://78gjb1wfvmat" path="res://Player.gd" id="2_r3fl7"]
+[ext_resource type="Script" uid="uid://dcmakcalqcv6a" path="res://teleport.gd" id="3_a0tk4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_noarx"]
 size = Vector2(20, 20)
@@ -15,7 +12,7 @@ size = Vector2(20, 20)
 size = Vector3(20, 0.1, 20)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_noarx"]
-top_radius = 0.1
+top_radius = 3.13
 height = 10.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a0tk4"]
@@ -27,35 +24,25 @@ size = Vector3(2, 3, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a0tk4"]
 size = Vector3(2, 3, 2)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="Environment" id="Environment_a0tk4"]
+background_mode = 1
+background_color = Color(0.566206, 0.8078316, 0.7267615, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jka67"]
+radius = 0.25
+height = 1.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_noarx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a0tk4"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.05
+
+[node name="Main" type="Node3D"]
 script = ExtResource("1_61lph")
-
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-
-[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
-visible = false
-mesh = SubResource("SphereMesh_noarx")
-
-[node name="Sketchfab_Scene" parent="XROrigin3D/LeftController" instance=ExtResource("2_noarx")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-
-[node name="RightController" type="XRController3D" parent="XROrigin3D"]
-tracker = &"right_hand"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
-visible = false
-mesh = SubResource("BoxMesh_a0tk4")
-
-[node name="Sketchfab_Scene" parent="XROrigin3D/RightController" instance=ExtResource("2_noarx")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.000532866, 0, 0)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="XROrigin3D"]
-script = ExtResource("3_a0tk4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -67,6 +54,7 @@ text = "Enter VR"
 [node name="Level" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015671402, 0.0005710125, -0.0015251935)
 mesh = SubResource("PlaneMesh_noarx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Level"]
@@ -78,6 +66,39 @@ shape = SubResource("BoxShape3D_noarx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, -4)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Wierza orientacyjna"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, 0, 0, 6.194934)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, -7.672064, -0.41410542, -6.7002926)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, -544.9321, -0.41410542, -6737.112)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, 4.873642, -0.41410542, -2.8333216)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D/MeshInstance3D2"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, -544.9321, -0.41410542, -6737.112)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, -3.8004973, -0.41410542, 11.777592)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, -544.9321, -0.41410542, -6737.112)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D/MeshInstance3D3"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, 4.873642, -0.41410542, -2.8333216)
+mesh = SubResource("CylinderMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Wierza orientacyjna/MeshInstance3D/MeshInstance3D/MeshInstance3D3/MeshInstance3D2"]
+transform = Transform3D(0.99920696, 0, -0.039817885, 0, 1, 0, 0.039817885, 0, 0.99920696, -544.9321, -0.41410542, -6737.112)
 mesh = SubResource("CylinderMesh_noarx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Wierza orientacyjna"]
@@ -87,7 +108,27 @@ shape = SubResource("CylinderShape3D_a0tk4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1936083, 1.5, 0)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D2/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1936083, -0.061245203, 2.977726)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D2/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.699127, -0.061245203, 1.6971512)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D2/MeshInstance3D/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.319692, -0.061245203, -5.5805564)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D2/MeshInstance3D/MeshInstance3D/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.76740074, -0.061245203, -5.5805564)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D2/MeshInstance3D/MeshInstance3D/MeshInstance3D/MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18864775, -0.061245203, -3.916533)
 mesh = SubResource("BoxMesh_noarx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D2"]
@@ -95,5 +136,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_a0tk4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
-transform = Transform3D(0.662535, -0.471905, 0.581682, 0.354623, 0.88165, 0.311346, -0.659766, 4.5064e-08, 0.751471, 3.59339, 8.14979, 8.1498)
-light_color = Color(0.859099, 0.757699, 3.85046e-07, 1)
+transform = Transform3D(0.66253453, -0.4719046, 0.58168215, 0.35462287, 0.8816496, 0.31134644, -0.65976566, 4.506401e-08, 0.75147146, 3.593394, 8.149786, 8.149802)
+light_color = Color(0.93348426, 0.7187051, 0.08004745, 1)
+light_energy = 1.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a0tk4")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("2_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_jka67")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="Player"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Player/XROrigin3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="LeftController" type="XRController3D" parent="Player/XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/LeftController"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_noarx")
+
+[node name="Sketchfab_Scene" parent="Player/XROrigin3D/LeftController" instance=ExtResource("2_noarx")]
+transform = Transform3D(-0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="RightController" type="XRController3D" parent="Player/XROrigin3D"]
+tracker = &"right_hand"
+script = ExtResource("3_a0tk4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/XROrigin3D/RightController"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="Sketchfab_Scene" parent="Player/XROrigin3D/RightController" instance=ExtResource("2_noarx")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.09320007, 0.035007015, 0)
+
+[node name="TeleportRay" type="RayCast3D" parent="Player/XROrigin3D/RightController"]
+target_position = Vector3(0, 0, -10)
+
+[node name="TeleportMarker" type="MeshInstance3D" parent="Player/XROrigin3D/RightController"]
+top_level = true
+visible = false
+mesh = SubResource("CylinderMesh_a0tk4")
+
+[connection signal="button_released" from="Player/XROrigin3D/RightController" to="Player/XROrigin3D/RightController" method="_on_right_controller_button_released"]
